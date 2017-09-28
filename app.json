@@ -1,4 +1,15 @@
 {
-  "name": "kidpicker",
-  "displayName": "kidpicker"
+  "expo": {
+    "name": "Kid Picker",
+    "icon": "icon.png",
+    "version": "1.0.0",
+    "sdkVersion": "21.0.0",
+    "ios": {
+      "bundleIdentifier": "com.tomljones3.kidpicker"
+    },
+    "android": {
+      "package": "com.tomljones3.kidpicker"
+    }
+
+  }
 }

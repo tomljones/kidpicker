@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, AppRegistry, FlatList, Text, Button, StyleSheet, View } from 'react-native';
+import { Alert, AppRegistry, FlatList, Text, StyleSheet, View } from 'react-native';
+import Button from 'apsl-react-native-button';
 
 export default class App extends React.Component {
   constructor() {
@@ -36,9 +37,13 @@ export default class App extends React.Component {
 
     assignments.push({key:3,job:'Dishwasher',kid:lastKids[1]});
 
-    // Generate a random number between 1 and 3 for the final chore
+    // Generate a random number between 1 and 3 for wash the first pot
     var randomSelection = numberPicker(3);
-    assignments.push({key:4,job:'Wash the pot',kid:allKids[randomSelection]});
+    assignments.push({key:4,job:'Wash the pot (1)',kid:allKids[randomSelection]});
+
+    // Generate a random number between 1 and 3 for wash the second pot
+    var randomSelection = numberPicker(3);
+    assignments.push({key:5,job:'Wash the pot (2)',kid:allKids[randomSelection]});
 
     this.setState({
       assignments: assignments
@@ -46,16 +51,31 @@ export default class App extends React.Component {
 
   }
 
+  clear =() => {
+    this.setState({
+      assignments: ''
+    });
+  }
+
   render() {
     const assignments = this.state.assignments;
     return (
       <View style={styles.container}>
-        <View style={styles.buttonContainer}>
-          <Button
-            onPress={this.assignJobs}
-            title="Assign Jobs"
-          />
-        </View>
+        <Button
+          style={styles.buttonContainer}
+          textStyle={styles.textStyle}
+          onPress={this.assignJobs}
+          title="Assign Jobs"
+        >
+        Assign Jobs
+        </Button>
+        <Button
+          style={styles.buttonContainer2}
+          textStyle={styles.textStyle2}
+          onPress={this.clear}
+        >
+        Clear
+        </Button>
         <View style={styles.container}>
           <FlatList
             data={assignments}
@@ -75,17 +95,35 @@ function numberPicker(maxNumber){
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 25,
-    backgroundColor: '#fff',
+    justifyContent: 'center',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    marginTop: 50,
+    marginLeft: 20,
+    marginRight: 20,
+  },
+  textStyle: {
+    color: 'white'
+  },
+  textStyle2: {
+    color: 'black'
   },
   buttonContainer: {
-    margin: 20,
+    borderColor: '#3498db',
+    backgroundColor: '#3498db',
+    borderWidth: 2,
+    borderRadius: 22,
+  },
+  buttonContainer2: {
+    backgroundColor: 'white',
+    borderColor: '#333',
+    borderWidth: 2,
+    borderRadius: 22,
+  },
+  textStyle8: {
     width: 200,
-    height: 50,
-    color: 'white',
-    backgroundColor: 'steelblue'
+    fontFamily: 'Avenir Next',
+    fontWeight: '500',
+    color: '#FFFFFF',
   },
   item: {
     padding: 10,
